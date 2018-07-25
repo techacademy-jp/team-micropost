@@ -7,4 +7,6 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   # rails標準機能
   has_secure_password
+  
+  has_many :microposts
 end
