@@ -12,6 +12,18 @@
           <p><%= micropost.content %></p>
         </div>
         <div>
+          <% if @favorite_list[micropost.id].nil? %>
+            <!-- 追加 -->
+            <%= form_for @favorite do |f| %>
+              <%= f.hidden_field :user_id,value: @user.id %>
+              <%= f.hidden_field :content_id, value: micropost.id %>
+              <%= f.submit 'AddFavorite' %>
+            <% end %>
+          <% else %>
+            <%= link_to 'Remove Favorite', @favorite_list[micropost.id], method: :delete, data: { confirm: 'お気に入りから外しますか？' } %>
+          <% end %>
+        </div>
+        <div>
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>
