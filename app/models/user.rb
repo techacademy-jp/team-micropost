@@ -17,7 +17,7 @@ class User < ApplicationRecord
   
   # お気に入りのリレーション
   has_many :favorite, foreign_key: :user_id
-  has_many :micropost, through: :favorite
+  has_many :fav_microposts, through: :favorite, source: :micropost
   
   def follow(other_user)
     unless self == other_user
@@ -36,6 +36,10 @@ class User < ApplicationRecord
   
   def feed_microposts
     Micropost.where(user_id: self.following_ids + [self.id])
+  end
+  
+  def get_favorite_microposts
+    @fav = self.fav_microposts
   end
   
   def get_favorite_list_from_microposts(microposts)

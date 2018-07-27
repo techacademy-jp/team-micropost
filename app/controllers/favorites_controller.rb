@@ -9,9 +9,9 @@ class FavoritesController < ApplicationController
     
     @fav = Favorite.new(fav_params)
     if @fav.save
-      redirect_to root_path, notice: "お気に入り登録しました"
+      redirect_to root_path, flash: {success: "お気に入り登録しました"}
     else
-      redirect_to root_path, alert: "お気に入り登録に失敗しました"
+      redirect_to root_path, flash: {danger: "お気に入り登録に失敗しました"}
     end
     
   end
@@ -26,7 +26,8 @@ class FavoritesController < ApplicationController
     @fav = Favorite.find_by(id: params[:id])
     @fav.destroy
     
-    redirect_to root_path, notice: "お気に入りから削除しました。"
+    #flash.now[:success] = "お気に入りから削除しました。"
+    redirect_to :back, flash: {success: "お気に入りから削除しました。"}
   end
   
   private
