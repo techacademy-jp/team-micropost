@@ -10,4 +10,12 @@ class ToppagesController < ApplicationController
     end
   end
   
+  def test
+    
+  end
+  
+  def test2
+    
+  end
+  
 end
