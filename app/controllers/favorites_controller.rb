@@ -25,8 +25,7 @@ class FavoritesController < ApplicationController
     
     @fav = Favorite.find_by(id: params[:id])
     @fav.destroy
-    
-    #flash.now[:success] = "お気に入りから削除しました。"
+
     redirect_to :back, flash: {success: "お気に入りから削除しました。"}
   end
   
